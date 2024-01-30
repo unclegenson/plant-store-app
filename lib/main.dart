@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'screens/mainSplash.dart';
 
-void main() async {
+void main() {
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
