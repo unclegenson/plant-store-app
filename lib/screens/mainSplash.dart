@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ghaleb_1/screens/home.dart';
 
 import '../sabet/sabet.dart';
 import 'bottomPart.dart';
@@ -58,10 +59,11 @@ class _SplashScreenState extends State<SplashScreen> {
             setState(() {
               page == 3
                   ? Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const HomePage();
-                        },
+                      PageRouteBuilder(
+                        transitionDuration: Duration(seconds: 1),
+                        transitionsBuilder: (_, a, __, c) =>
+                            FadeTransition(opacity: a, child: c),
+                        pageBuilder: (_, __, ___) => const Home(),
                       ),
                     )
                   : _controller.nextPage(
@@ -136,7 +138,8 @@ class DotWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 200),
       width: width,
       height: 10,
       decoration: BoxDecoration(

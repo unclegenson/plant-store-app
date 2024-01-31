@@ -30,7 +30,7 @@ class Page2 extends StatelessWidget {
               child: Text(
                 'گیاهان رو بهتر از قبل بشناس',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 24,
                   color: SabetHa.primary,
                   fontWeight: FontWeight.bold,
                 ),

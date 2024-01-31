@@ -11,6 +11,33 @@ class PlantDetails extends StatefulWidget {
 }
 
 class _PlantDetailsState extends State<PlantDetails> {
+  bool showHowMany = false;
+  SnackBar snackBarAdd = const SnackBar(
+    duration: Duration(milliseconds: 300),
+    behavior: SnackBarBehavior.floating,
+    content: Text(
+      'به سبد خرید اضافه شد',
+      textDirection: TextDirection.rtl,
+      style: TextStyle(
+        fontSize: 15,
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  );
+  SnackBar snackBarremove = const SnackBar(
+    duration: Duration(milliseconds: 300),
+    behavior: SnackBarBehavior.floating,
+    content: Text(
+      'از سبد خرید کم شد',
+      textDirection: TextDirection.rtl,
+      style: TextStyle(
+        fontSize: 15,
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  );
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -160,7 +187,6 @@ class _PlantDetailsState extends State<PlantDetails> {
                 ),
                 color: SabetHa.primary!.withOpacity(0.3),
               ),
-              height: size.height * 6.93 / 13,
               child: Column(
                 children: [
                   Padding(
@@ -210,13 +236,25 @@ class _PlantDetailsState extends State<PlantDetails> {
                         const SizedBox(
                           width: 12,
                         ),
-                        Text(
-                          DataBase.data[widget.id]!['price'].toString(),
-                          style: TextStyle(
-                            fontSize: 32,
-                            color: SabetHa.primary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              DataBase.data[widget.id]!['price'].toString(),
+                              style: TextStyle(
+                                fontSize: 32,
+                                color: SabetHa.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              ',000',
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: SabetHa.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -255,40 +293,106 @@ class _PlantDetailsState extends State<PlantDetails> {
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
-              onPressed: () {
-                SnackBar(
-                  content: Text(
-                    'به سبد خرید اضافه شد',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: SabetHa.primary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                );
-                setState(() {
-                  DataBase.data[widget.id]!['is selected'] = true;
-                });
-              },
+              onPressed: DataBase.data[widget.id]!['is selected']
+                  ? null
+                  : () {
+                      setState(() {
+                        DataBase.data[widget.id]!['is selected'] = true;
+                      });
+                    },
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(
-                    Icons.shopping_cart_rounded,
-                    size: 28,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
+                mainAxisAlignment: DataBase.data[widget.id]!['is selected']
+                    ? MainAxisAlignment.spaceBetween
+                    : MainAxisAlignment.center,
+                children: [
+                  DataBase.data[widget.id]!['is selected']
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.white, width: 1),
+                                borderRadius: BorderRadius.circular(60),
+                                color: SabetHa.primary,
+                              ),
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    DataBase.data[widget.id]!['count']++;
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBarAdd);
+                                  });
+                                },
+                                icon: const Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: 22,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 14,
+                            ),
+                            Text(
+                              DataBase.data[widget.id]!['count'].toString(),
+                              style: const TextStyle(
+                                  fontSize: 22, color: Colors.white),
+                            ),
+                            const SizedBox(
+                              width: 14,
+                            ),
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.white, width: 1),
+                                borderRadius: BorderRadius.circular(60),
+                                color: SabetHa.primary,
+                              ),
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(
+                                    () {
+                                      if (DataBase.data[widget.id]!['count'] >
+                                          0) {
+                                        DataBase.data[widget.id]!['count']--;
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackBarremove);
+                                      }
+                                      if (DataBase.data[widget.id]!['count'] ==
+                                          0) {
+                                        DataBase.data[widget.id]![
+                                            'is selected'] = false;
+                                      }
+                                    },
+                                  );
+                                },
+                                icon: const Icon(Icons.remove,
+                                    size: 22, color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        )
+                      : const Icon(
+                          Icons.shopping_cart_rounded,
+                          size: 28,
+                          color: Colors.white,
+                        ),
+                  const SizedBox(
                     width: 12,
                   ),
-                  Text(
+                  const Text(
                     'افزودن به سبد خرید',
                     style: TextStyle(
                       fontSize: 22,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

@@ -23,6 +23,7 @@ class DataBase {
       'size': 'بزرگ',
       'star': '5',
       'id': 0,
+      'count': 0,
     },
     1: {
       'name': 'ارغوان',
@@ -36,6 +37,7 @@ class DataBase {
       'size': 'بزرگ',
       'star': '4.7',
       'id': 1,
+      'count': 0,
     },
     2: {
       'name': 'ارکیده کاتالیا',
@@ -49,6 +51,7 @@ class DataBase {
       'size': 'متوسط',
       'star': '4.5',
       'id': 2,
+      'count': 0,
     },
     3: {
       'name': 'اسطخودوس',
@@ -62,6 +65,7 @@ class DataBase {
       'size': 'بزرگ',
       'star': '4.6',
       'id': 3,
+      'count': 0,
     },
     4: {
       'name': 'اورینتال (لیلیوم)',
@@ -75,6 +79,7 @@ class DataBase {
       'size': 'کوچک',
       'star': '4.1',
       'id': 4,
+      'count': 0,
     },
     5: {
       'name': 'آچیلا',
@@ -88,6 +93,7 @@ class DataBase {
       'size': 'متوسط',
       'star': '4.9',
       'id': 5,
+      'count': 0,
     },
     6: {
       'name': 'آلسترومریا',
@@ -101,6 +107,7 @@ class DataBase {
       'size': 'بزرگ',
       'star': '3.9',
       'id': 6,
+      'count': 0,
     },
     7: {
       'name': 'آلاله',
@@ -114,6 +121,7 @@ class DataBase {
       'size': 'بزرگ',
       'star': '4.9',
       'id': 7,
+      'count': 0,
     },
   };
   static List profileData = [

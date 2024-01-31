@@ -82,7 +82,8 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          SizedBox(
+          Container(
+            color: Colors.white,
             height: 320,
             width: MediaQuery.of(context).size.width,
             child: ListView.builder(
@@ -112,29 +113,31 @@ class _listTileBuild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      trailing: Icon(
-        icon1,
-        size: 22,
-        color: SabetHa.primary,
-      ),
-      title: Text(
-        text,
-        textDirection: TextDirection.rtl,
-        style: TextStyle(
-          fontSize: 18,
-          color: SabetHa.primary,
-          fontWeight: FontWeight.bold,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {},
+        child: ListTile(
+          trailing: Icon(
+            icon1,
+            size: 22,
+            color: SabetHa.primary,
+          ),
+          title: Text(
+            text,
+            textDirection: TextDirection.rtl,
+            style: TextStyle(
+              fontSize: 18,
+              color: SabetHa.primary,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          leading: Icon(
+            Icons.arrow_back_ios_rounded,
+            color: SabetHa.primary,
+            size: 20,
+          ),
         ),
-      ),
-      leading: IconButton(
-        visualDensity: VisualDensity.compact,
-        icon: Icon(
-          Icons.arrow_back_ios_rounded,
-          color: SabetHa.primary,
-          size: 20,
-        ),
-        onPressed: () {},
       ),
     );
   }

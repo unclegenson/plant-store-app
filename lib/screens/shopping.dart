@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ghaleb_1/screens/home.dart';
+import 'package:intl/intl.dart' as intl;
 
 import '../sabet/sabet.dart';
+import 'itemDetail.dart';
 
 class ShoppingPage extends StatefulWidget {
   const ShoppingPage({super.key});
@@ -11,6 +12,8 @@ class ShoppingPage extends StatefulWidget {
 }
 
 class _ShoppingPageState extends State<ShoppingPage> {
+  var formatter = intl.NumberFormat.decimalPattern('hi');
+
   late List showFlowers;
   double sum = 0;
   @override
@@ -19,9 +22,9 @@ class _ShoppingPageState extends State<ShoppingPage> {
       showFlowers = DataBase.data.values.where((element) {
         return element['is selected'] == true;
       }).toList();
-
+      print(showFlowers);
       for (var number in showFlowers) {
-        sum += number['price'];
+        sum += number['price'] * number['count'];
       }
     });
     super.initState();
@@ -30,6 +33,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       bottomSheet: Container(
         color: Colors.white,
@@ -52,7 +56,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
                   width: 10,
                 ),
                 Text(
-                  sum.toInt().toString(),
+                  formatter.format(sum.toInt()).toString(),
                   style: TextStyle(
                     fontSize: 24,
                     color: SabetHa.primary,
@@ -115,19 +119,19 @@ class _ShoppingPageState extends State<ShoppingPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text(
-                    'هنوز چیزی نخریدیس!',
+                    'هنوز چیزی نخریدی!',
                     textAlign: TextAlign.center,
                     textDirection: TextDirection.rtl,
                     style: TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   Icon(
                     Icons.remove_shopping_cart_outlined,
                     size: 40,
-                    color: Colors.white,
+                    color: Colors.black,
                   )
                 ],
               ),
@@ -146,7 +150,13 @@ class _ShoppingPageState extends State<ShoppingPage> {
                       padding:
                           const EdgeInsets.only(top: 10, right: 10, left: 10),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) {
+                              return PlantDetails(id: showFlowers[index]['id']);
+                            },
+                          ));
+                        },
                         child: Container(
                           height: 100,
                           decoration: BoxDecoration(
@@ -164,7 +174,10 @@ class _ShoppingPageState extends State<ShoppingPage> {
                                     Row(
                                       children: [
                                         Text(
-                                          showFlowers[index]['price']
+                                          formatter
+                                              .format(showFlowers[index]
+                                                      ['price'] *
+                                                  showFlowers[index]['count'])
                                               .toString(),
                                           textDirection: TextDirection.rtl,
                                           style: TextStyle(
@@ -200,7 +213,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
                                   Text(
                                     showFlowers[index]['name'],
                                     style: const TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                     ),
@@ -210,6 +223,15 @@ class _ShoppingPageState extends State<ShoppingPage> {
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700,
+                                      color: Colors.black87.withOpacity(0.5),
+                                    ),
+                                  ),
+                                  Text(
+                                    '${showFlowers[index]['count'].toString()} عدد',
+                                    textDirection: TextDirection.rtl,
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.black87.withOpacity(0.5),
                                     ),
                                   ),
