@@ -22,7 +22,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
       showFlowers = DataBase.data.values.where((element) {
         return element['is selected'] == true;
       }).toList();
-      print(showFlowers);
+
       for (var number in showFlowers) {
         sum += number['price'] * number['count'];
       }
@@ -97,17 +97,12 @@ class _ShoppingPageState extends State<ShoppingPage> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(18.0),
-            child: InkWell(
-              onTap: () {
-                print(showFlowers);
-              },
-              child: Text(
-                'سبد خرید',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: SabetHa.primary,
-                  fontWeight: FontWeight.bold,
-                ),
+            child: Text(
+              'سبد خرید',
+              style: TextStyle(
+                fontSize: 24,
+                color: SabetHa.primary,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
