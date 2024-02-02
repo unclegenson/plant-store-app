@@ -50,38 +50,42 @@ class _HomePageState extends State<HomePage> {
         },
         backgroundColor: Colors.white,
         currentIndex: _currrent,
+        selectedItemColor: SabetHa.primary,
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.home,
-                color: SabetHa.primary,
-              ),
-              icon: const Icon(
-                Icons.home,
-                color: Colors.grey,
-              ),
-              label: ''),
+            activeIcon: Icon(
+              Icons.home,
+              color: SabetHa.primary,
+            ),
+            icon: const Icon(
+              Icons.home,
+              color: Colors.grey,
+            ),
+            label: 'خانه',
+          ),
           BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.favorite,
-                color: SabetHa.primary,
-              ),
-              icon: const Icon(
-                Icons.favorite,
-                color: Colors.grey,
-              ),
-              label: ''),
+            activeIcon: Icon(
+              Icons.favorite,
+              color: SabetHa.primary,
+            ),
+            icon: const Icon(
+              Icons.favorite,
+              color: Colors.grey,
+            ),
+            label: 'علاقه مندی ها',
+          ),
           BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.shopping_cart,
-                color: SabetHa.primary,
-              ),
-              icon: const Icon(
-                Icons.shopping_cart,
-                color: Colors.grey,
-              ),
-              label: ''),
+            activeIcon: Icon(
+              Icons.shopping_cart,
+              color: SabetHa.primary,
+            ),
+            icon: const Icon(
+              Icons.shopping_cart,
+              color: Colors.grey,
+            ),
+            label: 'سبد خرید',
+          ),
           BottomNavigationBarItem(
             activeIcon: Icon(
               Icons.person,
@@ -91,7 +95,7 @@ class _HomePageState extends State<HomePage> {
               Icons.person,
               color: Colors.grey,
             ),
-            label: '',
+            label: 'پروفایل',
           )
         ],
       ),

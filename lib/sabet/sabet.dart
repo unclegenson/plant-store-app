@@ -29,7 +29,7 @@ class DataBase {
       'name': 'ارغوان',
       'image': 'assets/images/2.png',
       'price': 100,
-      'sort': 'محل کار',
+      'sort': 'آپارتمانی',
       'is liked': false,
       'is selected': false,
       'humidity': 28,
