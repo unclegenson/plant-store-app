@@ -12,7 +12,7 @@ class PlantDetails extends StatefulWidget {
 
 class _PlantDetailsState extends State<PlantDetails> {
   bool showHowMany = false;
-  SnackBar snackBarAdd = const SnackBar(
+  SnackBar snackBar = const SnackBar(
     duration: Duration(milliseconds: 300),
     behavior: SnackBarBehavior.floating,
     content: Text(
@@ -25,19 +25,7 @@ class _PlantDetailsState extends State<PlantDetails> {
       ),
     ),
   );
-  SnackBar snackBarremove = const SnackBar(
-    duration: Duration(milliseconds: 300),
-    behavior: SnackBarBehavior.floating,
-    content: Text(
-      'از سبد خرید کم شد',
-      textDirection: TextDirection.rtl,
-      style: TextStyle(
-        fontSize: 15,
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-  );
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -298,6 +286,7 @@ class _PlantDetailsState extends State<PlantDetails> {
                   : () {
                       setState(() {
                         DataBase.data[widget.id]!['is selected'] = true;
+                        DataBase.data[widget.id]!['count']++;
                       });
                     },
               child: Row(
@@ -322,8 +311,6 @@ class _PlantDetailsState extends State<PlantDetails> {
                                 onPressed: () {
                                   setState(() {
                                     DataBase.data[widget.id]!['count']++;
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(snackBarAdd);
                                   });
                                 },
                                 icon: const Icon(
@@ -360,8 +347,6 @@ class _PlantDetailsState extends State<PlantDetails> {
                                       if (DataBase.data[widget.id]!['count'] >
                                           0) {
                                         DataBase.data[widget.id]!['count']--;
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(snackBarremove);
                                       }
                                       if (DataBase.data[widget.id]!['count'] ==
                                           0) {
@@ -385,14 +370,39 @@ class _PlantDetailsState extends State<PlantDetails> {
                   const SizedBox(
                     width: 12,
                   ),
-                  const Text(
-                    'افزودن به سبد خرید',
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  DataBase.data[widget.id]!['is selected']
+                      ? SizedBox(
+                          width: 80,
+                          height: 40,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: SabetHa.primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: const Text(
+                              'تایید',
+                              style: TextStyle(
+                                fontSize: 22,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        )
+                      : const Text(
+                          'افزودن به سبد خرید',
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                 ],
               ),
             ),
