@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
                   height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: Colors.grey[300],
+                    color: Colors.green[50],
                   ),
                   child: Row(
                     children: [
@@ -237,7 +237,7 @@ class _HomeState extends State<Home> {
                         height: 200,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          color: SabetHa.primary!.withAlpha(200),
+                          color: SabetHa.primary!.withOpacity(.7),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),

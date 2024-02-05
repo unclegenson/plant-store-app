@@ -6,6 +6,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -84,13 +85,13 @@ class ProfilePage extends StatelessWidget {
           ),
           Container(
             color: Colors.white,
-            height: 320,
+            height: size.width / 1.5,
             width: MediaQuery.of(context).size.width,
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 5,
               itemBuilder: (context, index) {
-                return _listTileBuild(
+                return ListTileBuild(
                   text: DataBase.profileData[index]['title'],
                   icon1: DataBase.profileData[index]['icon1'],
                 );
@@ -103,8 +104,9 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-class _listTileBuild extends StatelessWidget {
-  const _listTileBuild({
+class ListTileBuild extends StatelessWidget {
+  const ListTileBuild({
+    super.key,
     required this.text,
     required this.icon1,
   });

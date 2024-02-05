@@ -91,12 +91,36 @@ class _ShoppingPageState extends State<ShoppingPage> {
       ),
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10, top: 5),
+          child: Stack(
+            alignment: Alignment.topRight,
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.payment_rounded,
+                  size: 32,
+                  color: SabetHa.primary,
+                ),
+                onPressed: () {},
+              ),
+              const Padding(
+                padding: const EdgeInsets.only(right: 6, top: 9),
+                child: Icon(
+                  Icons.circle,
+                  size: 9,
+                  color: Colors.red,
+                ),
+              ),
+            ],
+          ),
+        ),
         toolbarHeight: 70,
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [
           Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding: const EdgeInsets.only(right: 18, top: 10),
             child: Text(
               'سبد خرید',
               style: TextStyle(
@@ -156,7 +180,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
                           height: 100,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: Colors.grey[300],
+                            color: Colors.green[100]!.withOpacity(0.7),
                           ),
                           child: Row(
                             children: [

@@ -40,7 +40,10 @@ class _HomePageState extends State<HomePage> {
           );
         },
         backgroundColor: Colors.green[800],
-        child: const Icon(Icons.qr_code_scanner),
+        child: const Icon(
+          Icons.add_photo_alternate_rounded,
+          size: 28,
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (value) {

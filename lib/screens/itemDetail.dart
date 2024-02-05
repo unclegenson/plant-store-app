@@ -57,12 +57,20 @@ class _PlantDetailsState extends State<PlantDetails> {
                 radius: 40,
                 backgroundColor: Colors.green[100],
                 child: Icon(
-                  Icons.favorite,
+                  DataBase.data[widget.id]!['is liked']
+                      ? Icons.favorite
+                      : Icons.favorite_border,
                   size: 26,
                   color: SabetHa.primary,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  DataBase.data[widget.id]!['is liked']
+                      ? DataBase.data[widget.id]!['is liked'] = false
+                      : DataBase.data[widget.id]!['is liked'] = true;
+                });
+              },
             ),
           ),
         ],

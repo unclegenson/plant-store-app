@@ -38,10 +38,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const HomePage();
-                      },
+                    PageRouteBuilder(
+                      transitionDuration: Duration(seconds: 1),
+                      transitionsBuilder: (_, a, __, c) =>
+                          FadeTransition(opacity: a, child: c),
+                      pageBuilder: (_, __, ___) => const HomePage(),
                     ),
                   );
                 },
@@ -63,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         transitionDuration: Duration(seconds: 1),
                         transitionsBuilder: (_, a, __, c) =>
                             FadeTransition(opacity: a, child: c),
-                        pageBuilder: (_, __, ___) => const Home(),
+                        pageBuilder: (_, __, ___) => const HomePage(),
                       ),
                     )
                   : _controller.nextPage(
