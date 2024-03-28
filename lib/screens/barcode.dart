@@ -17,7 +17,7 @@ class _BarcodeState extends State<Barcode> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: SabetHa.primary,
-        title: Text("Scan a Plant"),
+        title: const Text("Scan a Plant"),
         centerTitle: true,
       ),
       body: Center(
@@ -31,34 +31,48 @@ class _BarcodeState extends State<Barcode> {
                 height: 400,
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: ElevatedButton(
-                style:
-                    ElevatedButton.styleFrom(backgroundColor: SabetHa.primary),
-                onPressed: () async {
-                  var res = await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SimpleBarcodeScannerPage(
-                        appBarTitle: "Scan a Flower to have it's information",
-                        isShowFlashIcon: true,
-                        scanType: ScanType.defaultMode,
-                      ),
+              child: SizedBox(
+                height: 40,
+                width: 240,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: SabetHa.primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                  );
-                  setState(() {
-                    if (res is String) {
-                      result = res;
-                    }
-                  });
-                },
-                child: const Text('Open Scanner'),
+                  ),
+                  onPressed: () async {
+                    var res = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SimpleBarcodeScannerPage(
+                          appBarTitle: "Scan a Flower to have it's information",
+                          isShowFlashIcon: true,
+                          scanType: ScanType.defaultMode,
+                        ),
+                      ),
+                    );
+                    setState(() {
+                      if (res is String) {
+                        result = res;
+                      }
+                    });
+                  },
+                  child: const Text(
+                    'Open Scanner',
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+                  ),
+                ),
               ),
             ),
             result != '' && result != '-1'
                 ? Text('Barcode Result: $result')
-                : Text('')
+                : const Text('')
           ],
         ),
       ),

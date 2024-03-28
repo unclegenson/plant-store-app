@@ -16,6 +16,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
+    super.initState();
     showFlowers = DataBase.data.values.where((element) {
       return element.toString().contains(tabItems[3]);
     }).toList();
@@ -72,8 +73,8 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Container lowerListViewBuilder(Size size, BuildContext context) {
-    return Container(
+  SizedBox lowerListViewBuilder(Size size, BuildContext context) {
+    return SizedBox(
       height: size.height / 2,
       width: size.width,
       child: MediaQuery.removePadding(

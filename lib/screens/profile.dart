@@ -66,7 +66,7 @@ class ProfilePage extends StatelessWidget {
                 'assets/images/10.png',
                 width: 20,
                 height: 20,
-              )
+              ),
             ],
           ),
           const SizedBox(

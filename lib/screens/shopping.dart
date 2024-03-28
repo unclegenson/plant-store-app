@@ -105,7 +105,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
                 onPressed: () {},
               ),
               const Padding(
-                padding: const EdgeInsets.only(right: 6, top: 9),
+                padding: EdgeInsets.only(right: 6, top: 9),
                 child: Icon(
                   Icons.circle,
                   size: 9,
