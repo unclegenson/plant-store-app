@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 
 import '../sabet/sabet.dart';
-import 'itemDetail.dart';
+import 'item_detail.dart';
 
 class ShoppingPage extends StatefulWidget {
   const ShoppingPage({super.key});

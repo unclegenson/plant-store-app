@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ghaleb_1/sabet/sabet.dart';
-import 'package:ghaleb_1/screens/itemDetail.dart';
+import 'package:ghaleb_1/screens/item_detail.dart';
 
 List favoritePlants = [];
 

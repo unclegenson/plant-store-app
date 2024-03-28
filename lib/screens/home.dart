@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ghaleb_1/sabet/sabet.dart';
-import 'package:ghaleb_1/screens/itemDetail.dart';
+import 'package:ghaleb_1/screens/item_detail.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -148,7 +148,7 @@ class _HomeState extends State<Home> {
                         children: [
                           Text(
                             DataBase.data[index]!['name'],
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
